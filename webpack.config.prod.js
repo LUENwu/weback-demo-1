@@ -3,7 +3,7 @@ var path = require('path')
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
  module.exports = {
-  mode: 'development',
+  mode: 'production',
   entry:'./src/index.js',
   output: {
     path: path.resolve(__dirname, './dist'),
@@ -18,15 +18,15 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
     title: 'My App',
     template: 'assets/test.html'
   }),
-  // new MiniCssExtractPlugin({
-  //   filename: 'index.[contenthash].css'
-  // })
+  new MiniCssExtractPlugin({
+    filename: 'index.[contenthash].css'
+  })
 ],
   module: {
     rules: [
       {
         test: /\.css$/i,
-        use: ['style-loader', "css-loader"],
+        use: [MiniCssExtractPlugin.loader, "css-loader"],
       },
     ],
   },
