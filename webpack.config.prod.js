@@ -28,9 +28,27 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
         test: /\.css$/i,
         use: [MiniCssExtractPlugin.loader, "css-loader"],
       },
+      {
+        test: /\.scss$/i,
+        use: [MiniCssExtractPlugin.loader, "css-loader",
+        {
+          loader:'sass-loader',
+          options:{implementation:require('dart-sass')},
+        }],
+      },
+      {
+        test: /\.less$/i,
+        use: [MiniCssExtractPlugin.loader, "css-loader",'less-loader'],
+      },
+      
     ],
   },
+  
 }
+
+
+
+
 
 
 
