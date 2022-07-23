@@ -8,6 +8,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
   output: {
     path: path.resolve(__dirname, './dist'),
     filename: '[name].[contenthash].js',
+    assetModuleFilename: 'images/[hash][ext][query]'
   },
   devtool: 'inline-source-map',
   devServer: {
@@ -16,7 +17,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
   plugins: [
     new HtmlWebpackPlugin({
     title: 'My App',
-    template: 'assets/test.html'
+    template: 'src/assets/test.html'
   }),
   new MiniCssExtractPlugin({
     filename: 'index.[contenthash].css'
@@ -40,11 +41,21 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
         test: /\.less$/i,
         use: [MiniCssExtractPlugin.loader, "css-loader",'less-loader'],
       },
-      
+      {
+        test: /\.styl$/i,
+        use: ['style-loader', "css-loader",'stylus-loader'],
+      },
+      {
+        test: /\.(png|jpg|gif)$/i,
+        type: 'asset/resource'
+      }
     ],
   },
   
 }
+
+
+
 
 
 
