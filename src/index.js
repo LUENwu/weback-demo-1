@@ -16,7 +16,7 @@ button.onclick=()=>{
     const fn = module.default//模块的默认值 
     fn()
   },()=>{
-
+    
   })
 }
 
